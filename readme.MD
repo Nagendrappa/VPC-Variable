@@ -1,3 +1,7 @@
+## Architecture Diagram
+
+![VPC Architecture Diagram](Architecture%20diagram.png)
+
 # AWS VPC using Terraform (Variable Based)
 
 ## Overview
