@@ -32,36 +32,34 @@ Local Machine → Bastion Host (Public Subnet) → Private EC2 (Private Subnet)
 - Terraform >= 1.x
 - AWS CLI configured with appropriate IAM permissions
 
-## Usage
-```bash
+Deployment
+Clone the repository:
+
+Bash
+git clone https://github.com/Nagendrappa/VPC-Variable.git
+cd VPC-Variable
+Initialize Terraform:
+
+Bash
 terraform init
+Review the plan:
+
+Bash
 terraform plan
-terraform apply
-Validation Performed
-Successfully connected to private EC2 via bastion host
-Verified private EC2 instances can download OS patches
-Confirmed no direct SSH access from internet to private subnet
-Security Best Practices
-Private EC2 instances are not publicly accessible
-SSH restricted using CIDR blocks
-NAT Gateway used only for outbound traffic
-Terraform state files excluded from version control
+Apply the configuration:
 
-Repository Structure.
-├── vpc.tf
-├── igw.tf
-├── nat.tf
-├── eip.tf
-├── public-subnet.tf
-├── private-subnet.tf
-├── public_route_table.tf
-├── private_route_table.tf
-├── public_route_table_association.tf
-├── private_route_table_association.tf
-├── public-ec2.tf
-├── private-ec2.tf
-├── sg.tf
-├── provider.tf
-├── var.tf
-├── README.md
+Bash
+terraform apply -auto-approve
 
+📂 Repository Structure
+This project follows the Separation of Concerns principle by splitting resources into logical files:
+├── provider.tf        # AWS Provider & Versioning
+├── var.tf             # Input variables (CIDR, Regions, Instance Types)
+├── vpc.tf             # Core VPC Definition
+├── igw.tf / nat.tf    # Internet and NAT Gateways
+├── eip.tf             # Elastic IP for NAT
+├── public-subnet.tf   # Public Tier logic
+├── private-subnet.tf  # Private Tier logic
+├── public-ec2.tf      # Bastion Host configuration
+├── private-ec2.tf     # Private App instances
+└── sg.tf              # Security Group ingress/egress rules
