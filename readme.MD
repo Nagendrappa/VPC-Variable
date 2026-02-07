@@ -28,31 +28,47 @@ Local Machine → Bastion Host (Public Subnet) → Private EC2 (Private Subnet)
 - Clean separation of resources using multiple `.tf` files
 
 ## Prerequisites
+
 - AWS Account
 - Terraform >= 1.x
 - AWS CLI configured with appropriate IAM permissions
 
-Deployment
-Clone the repository:
+---
 
-Bash
+## Deployment
+
+### 1. Clone the repository
+
+```bash
 git clone https://github.com/Nagendrappa/VPC-Variable.git
 cd VPC-Variable
-Initialize Terraform:
+```
 
-Bash
+### 2. Initialize Terraform
+
+```bash
 terraform init
-Review the plan:
+```
 
-Bash
+### 3. Review the plan
+
+```bash
 terraform plan
-Apply the configuration:
+```
 
-Bash
-terraform apply -auto-approve
+### 4. Apply the configuration
 
-📂 Repository Structure
-This project follows the Separation of Concerns principle by splitting resources into logical files:
+```bash
+terraform apply --auto-approve
+```
+
+---
+
+## Repository Structure
+
+This project follows the **Separation of Concerns** principle by splitting resources into logical files:
+
+```
 ├── provider.tf        # AWS Provider & Versioning
 ├── var.tf             # Input variables (CIDR, Regions, Instance Types)
 ├── vpc.tf             # Core VPC Definition
@@ -61,5 +77,6 @@ This project follows the Separation of Concerns principle by splitting resources
 ├── public-subnet.tf   # Public Tier logic
 ├── private-subnet.tf  # Private Tier logic
 ├── public-ec2.tf      # Bastion Host configuration
-├── private-ec2.tf     # Private App instances
+├── private-ec2.tf     # Private App Instances
 └── sg.tf              # Security Group ingress/egress rules
+```
